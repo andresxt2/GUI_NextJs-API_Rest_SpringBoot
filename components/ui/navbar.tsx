@@ -31,7 +31,7 @@ const Navbar = () => {
               onClick={() => router.push("/clientes")}
               className="text-lg bg-gray-800 font-bold text-white hover:bg-gray-300"
             >
-              Clientes
+              Estudiantes
             </Button>
           </li>
           <li>
