@@ -38,6 +38,11 @@ export function DataTable<TData, TValue>({
 
   const searchKeyAliases: { [key: string]: string } = {
     cli_ID: "Cédula",
+    id_estudiante: "ID Estudiante",
+    nombres: "Nombres",
+    id_pago: "ID Pago",
+    id_beca: "ID Beca",
+    id_morosidad: "ID Morosidad",
   };
 
   const table = useReactTable({

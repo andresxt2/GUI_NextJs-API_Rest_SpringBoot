@@ -1,38 +1,38 @@
 import Image from "next/image";
 
 export default function Home() {
+  const articles = [
+    {
+      title: 'Innovación y Tradición en Educación Superior',
+      content: '"Bullworth College se enorgullece de combinar lo mejor de la tradición académica con una vanguardista aproximación a la enseñanza y el aprendizaje. Situados en el corazón de Quito, ofrecemos un entorno diverso y dinámico donde los estudiantes pueden prosperar. Con programas que van desde las humanidades hasta la tecnología avanzada, cada curso está diseñado para desafiar, inspirar y preparar a los estudiantes para el éxito en un mundo globalizado. Únete a nosotros para una experiencia universitaria que dejará una huella duradera en tu vida personal y profesional."',
+      flex_class: 'lg:flex-row',
+      img_src: 'https://andrestayupanta.neocities.org/imagesMvc/bullworth.jpg'
+    },
+    {
+      title: 'Nuestro Compromiso con la Excelencia',
+      content: '"En Bullworth College, la excelencia no es solo una meta, es nuestro compromiso. Nuestra facultad de renombre internacional impulsa la investigación innovadora y una enseñanza que cambia vidas, enmarcada por un campus vibrante que alberga una amplia gama de actividades culturales, sociales y deportivas. Estamos dedicados a cultivar líderes y ciudadanos responsables, equipados para aportar a la sociedad y al bienestar global. Experimenta el poder de la educación en una institución que valora la curiosidad, el debate intelectual y la búsqueda incesante del conocimiento."',
+      flex_class: 'lg:flex-row-reverse',
+      img_src: 'https://andrestayupanta.neocities.org/imagesMvc/sites1.jpg'
+    }
+  ];
+
   return (
     <main className="container mx-auto mt-5 p-5">
-      <section className="bg-white p-5 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold mb-4">Sobre MAX</h2>
-        <p className="text-xl font-semibold underline mb-2">Misión</p>
-        <p className="mb-4">
-          En HBO Max, nuestra misión es ofrecer a nuestros suscriptores acceso a una incomparable biblioteca de
-          contenido premium, que incluye una amplia gama de películas, series originales galardonadas, documentales
-          impactantes y contenido para toda la familia. Nos esforzamos por proporcionar una experiencia de entretenimiento
-          única y envolvente que supere las expectativas de nuestros usuarios, promoviendo la diversidad, la creatividad y la innovación en cada aspecto de nuestra plataforma.
-        </p>
-        <p className="text-xl font-semibold underline mb-2">Visión</p>
-        <p className="mb-4">
-          Nuestra visión en HBO Max es convertirnos en el principal destino de entretenimiento en línea, donde los usuarios de todo el mundo puedan descubrir, explorar y
-          disfrutar de contenido excepcional en cualquier momento y en cualquier lugar. Nos comprometemos a ser líderes en la industria, ofreciendo constantemente nuevos
-          e innovadores servicios y experiencias que enriquezcan la vida de nuestros suscriptores y fortalezcan nuestra posición como referente en el mundo del entretenimiento
-          digital.
-        </p>
-        <h3 className="text-2xl font-bold mt-6">Conócenos un poco más</h3>
+      <section className="bg-white p-5 rounded-lg shadow-md mb-10">
+        <h2 className="text-3xl font-bold mb-4 text-center">Bullworth College</h2>
       </section>
 
-      <section className="mt-10">
-        <div className="w-full flex justify-center">
-          <Image
-            src="/images/planes2.png"
-            alt="Mapa de la sede de HBO Max"
-            width={800}
-            height={600}
-            className="rounded-lg shadow-md"
-          />
+      {articles.map((article, index) => (
+        <div key={index} className={`flex flex-col ${article.flex_class} mb-10`}>
+          <article className="w-full lg:w-1/2 p-4">
+            <h2 className="text-2xl font-bold mb-2">{article.title}</h2>
+            <p className="text-lg">{article.content}</p>
+          </article>
+          <article className="w-full lg:w-1/2 p-4">
+            <img src={article.img_src} className="w-full h-auto rounded-lg shadow-md" alt="" />
+          </article>
         </div>
-      </section>
+      ))}
     </main>
   );
 }
