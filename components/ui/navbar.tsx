@@ -24,12 +24,13 @@ const Navbar = () => {
           />
         </a>
         <div className="hidden md:flex md:items-center md:space-x-4 flex-grow">
-          <Button className="text-white" onClick={() => router.push("/")}>Inicio</Button>
-          <Button className="text-white" onClick={() => router.push("/secciones")}>Secciones</Button>
-          <Button className="text-white" onClick={() => router.push("/estudiantes")}>Estudiantes</Button>
-          <Button className="text-white" onClick={() => router.push("/pagos")}>Pagos</Button>
-          <Button className="text-white" onClick={() => router.push("/becas")}>Becas</Button>
-          <Button className="text-white" onClick={() => router.push("/morosidades")}>Morosidades</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/")}>Inicio</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/secciones")}>Secciones</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/estudiantes")}>Estudiantes</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/pagos")}>Pagos</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/becas")}>Becas</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/morosidades")}>Morosidades</Button>
+          <Button className="text-white bg-black " onClick={() => router.push("/resultados")}>Resultados</Button>
         </div>
         <div className="md:hidden flex items-center">
           <button
@@ -55,6 +56,7 @@ const Navbar = () => {
           <Button className="text-white w-full text-left" onClick={() => { router.push("/pagos"); toggleMenu(); }}>Pagos</Button>
           <Button className="text-white w-full text-left" onClick={() => { router.push("/becas"); toggleMenu(); }}>Becas</Button>
           <Button className="text-white w-full text-left" onClick={() => { router.push("/morosidades"); toggleMenu(); }}>Morosidades</Button>
+          <Button className="text-white w-full text-left" onClick={() => { router.push("/resultados"); toggleMenu(); }}>Resultados</Button>
         </div>
       </div>
     </header>

@@ -32,7 +32,7 @@ export const MorosidadClient: React.FC<MorosidadClientProps> = ({
           <ArrowBigLeft className="mr-2 h-6 w-6"/>
           Regresar
       </Button>
-      <DataTable searchKeys={["id_morosidad"]} columns={columns} data={data} />
+      <DataTable searchKeys={["id_morosidad","id_estudiante"]} columns={columns} data={data} />
     </>
   );
 };

@@ -40,7 +40,7 @@ export function DataTable<TData, TValue>({
     cli_ID: "Cédula",
     id_estudiante: "ID Estudiante",
     nombres: "Nombres",
-    id_pago: "ID Pago",
+    cod_pago: "ID Pago",
     id_beca: "ID Beca",
     id_morosidad: "ID Morosidad",
   };

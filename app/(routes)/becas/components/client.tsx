@@ -32,7 +32,7 @@ export const BecasClient: React.FC<BecasClientProps> = ({
           <ArrowBigLeft className="mr-2 h-6 w-6"/>
           Regresar
       </Button>
-      <DataTable searchKeys={["id_beca"]} columns={columns} data={data} />
+      <DataTable searchKeys={["id_beca","id_estudiante"]} columns={columns} data={data} />
     </>
   );
 };
