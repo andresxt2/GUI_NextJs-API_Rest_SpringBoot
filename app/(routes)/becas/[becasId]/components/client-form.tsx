@@ -75,7 +75,7 @@ export const BecasForm: React.FC<BecasFormProps> = ({ }) => {
   useEffect(() => {
     const fetchEstudiantes = async () => {
       try {
-        const response = await axios.get("http://localhost:5022/api/estudiantes");
+        const response = await axios.get("https://localhost:5024/api/estudiantes");
         const estudiantesData = response.data;
 
         setEstudiantes(estudiantesData.map((estudiante: any) => ({
@@ -93,7 +93,7 @@ export const BecasForm: React.FC<BecasFormProps> = ({ }) => {
   useEffect(() => {
     const fetchBecaData = async (becaId: string) => {
       try {
-        const becaData = await axios.get(`http://localhost:5022/api/becas/${becaId}`);
+        const becaData = await axios.get(`https://localhost:5024/api/becas/${becaId}`);
         form.reset(becaData.data);
       } catch (error) {
         console.error("Error fetching beca data:", error);
@@ -110,9 +110,9 @@ export const BecasForm: React.FC<BecasFormProps> = ({ }) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.put(`http://localhost:5022/api/becas/${params.becasId}`, data);
+        await axios.put(`https://localhost:5024/api/becas/${params.becasId}`, data);
       } else {
-        await axios.post(`http://localhost:5022/api/becas`, data);
+        await axios.post(`https://localhost:5024/api/becas`, data);
       }
       router.refresh();
       router.push(`/../becas`);
@@ -128,7 +128,7 @@ export const BecasForm: React.FC<BecasFormProps> = ({ }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5022/api/becas/${params.becasId}`);
+      await axios.delete(`https://localhost:5024/api/becas/${params.becasId}`);
       router.refresh();
       router.push(`/becas`);
       router.refresh();

@@ -70,7 +70,7 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
   useEffect(() => {
     const fetchEstudianteData = async (id_estudiante: string) => {
       try {
-        const estudianteData = await axios.get(`http://localhost:5022/api/estudiantes/${id_estudiante}`);
+        const estudianteData = await axios.get(`https://localhost:5024/api/estudiantes/${id_estudiante}`);
         form.reset(estudianteData.data); // Restablecer el formulario con los datos del cliente obtenidos
       } catch (error) {
         console.error("Error fetching estudiante data:", error);
@@ -89,9 +89,9 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.put(`http://localhost:5022/api/estudiantes/${params.estudiantesId}`, data);
+        await axios.put(`https://localhost:5024/api/estudiantes/${params.estudiantesId}`, data);
       } else {
-        await axios.post(`http://localhost:5022/api/estudiantes`, data);
+        await axios.post(`https://localhost:5024/api/estudiantes`, data);
       }
       router.refresh();
       router.push(`/../estudiantes`);
@@ -108,7 +108,7 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5022/api/estudiantes/${params.estudiantesId}`);
+      await axios.delete(`https://localhost:5024/api/estudiantes/${params.estudiantesId}`);
       router.refresh();
       router.push(`/estudiantes`);
       router.refresh();

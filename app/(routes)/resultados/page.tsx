@@ -13,7 +13,7 @@ const PageResultados: React.FC = () => {
 
   useEffect(() => {
     // Fetch Estado Pagos data
-    axios.get('http://localhost:5022/api/Resultados/ReporteEstadoPagos')
+    axios.get('https://localhost:5024/api/Resultados/ReporteEstadoPagos')
       .then(response => {
         const data = response.data;
         const estados = data.map((item: any) => item.estado);
@@ -43,7 +43,7 @@ const PageResultados: React.FC = () => {
       .catch(error => console.error('Error fetching estado pagos data:', error));
 
     // Fetch Morosidad data
-    axios.get('http://localhost:5022/api/Resultados/ReporteMorosidad')
+    axios.get('https://localhost:5024/api/Resultados/ReporteMorosidad')
       .then(response => {
         const data = response.data;
         const programas = data.map((item: any) => item.programa_academico);

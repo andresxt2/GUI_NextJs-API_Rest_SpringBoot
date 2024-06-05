@@ -42,7 +42,7 @@ export const Summary = () => {
       //#TODO: adapt cart 
       for (const item of items) {
         // Realizar la solicitud a pagos
-        await axios.post(`http://localhost:5022/api/pagos`, {
+        await axios.post(`https://localhost:5024/api/pagos`, {
           id_estudiante: cedula,
           fecha_pago: new Date(),
           saldo: item.precio,
@@ -61,11 +61,11 @@ export const Summary = () => {
 
   return (
     <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-      <h2 className="text-lg font-medium text-gray-900">Resumen de la Orden</h2>
+      <h2 className="text-lg font-medium text-gray-900">Resumen de las Compras</h2>
 
       <div className="mt-6 space-y-4">
         <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-          <div className="text-base font-medium text-gray-900">Total de la Orden</div>
+          <div className="text-base font-medium text-gray-900">Total</div>
           <Currency value={totalPrice} />
         </div>
         <div className="pt-4">
@@ -89,7 +89,7 @@ export const Summary = () => {
         onClick={onCheckout}
         className="w-full mt-6"
       >
-        Checkout
+        Pagar
       </Button>
     </div>
   )

@@ -3,7 +3,7 @@
 import { PagosForm } from "@/app/(routes)/pagos/[pagosId]/components/client-form";
 
 
-const EstudiantesPageAdd = ({ 
+const PagosPageAdd = ({ 
 
 }) => {
 
@@ -16,4 +16,4 @@ const EstudiantesPageAdd = ({
   );
 };
 
-export default EstudiantesPageAdd;
+export default PagosPageAdd;

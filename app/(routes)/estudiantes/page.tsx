@@ -11,7 +11,7 @@ const EstudiantePage = () => {
   useEffect(() => {
     const obtenerEstudiantes = async () => {
       try {
-        const EstudiantesData = await axios.get('http://localhost:5022/api/estudiantes');// Obtiene los clientes de la API
+        const EstudiantesData = await axios.get('https://localhost:5024/api/estudiantes');// Obtiene los clientes de la API
         setEstudiantes(EstudiantesData.data); // Actualiza el estado con los clientes obtenidos
       } catch (error) {
         console.error("Error al obtener clientes:", error);

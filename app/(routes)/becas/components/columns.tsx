@@ -8,6 +8,10 @@ export type BecasColumn = {
     monto: number;
     semestre: string;
     estado: string;
+    Estudiantes: {
+        nombres: string;
+        apellidos: string;
+    };
 }
 
 export const columns: ColumnDef<BecasColumn>[] = [
@@ -18,6 +22,11 @@ export const columns: ColumnDef<BecasColumn>[] = [
     {
         accessorKey: "id_estudiante",
         header: "Estudiante",
+    },
+    {
+        accessorFn: (row) => `${row.Estudiantes.nombres} ${row.Estudiantes.apellidos}`,
+        accessorKey: "nombres_apellidos",
+        header: "Estudiantes",
     },
     {
         accessorKey: "tipo_beca",

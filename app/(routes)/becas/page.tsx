@@ -11,7 +11,7 @@ const BecaPage = () => {
   useEffect(() => {
     const obtenerBecas = async () => {
       try {
-        const PagosData = await axios.get('http://localhost:5022/api/becas');// Obtiene los clientes de la API
+        const PagosData = await axios.get('https://localhost:5024/api/becas');// Obtiene los clientes de la API
         const sortedBecas = PagosData.data.sort((a: BecasColumn, b: BecasColumn) => b.id_beca - a.id_beca); // Ordena los pagos por id_pago de manera descendente
         setBecas(sortedBecas); // Actualiza el estado con los clientes obtenidos
       } catch (error) {
@@ -32,3 +32,5 @@ const BecaPage = () => {
 };
 
 export default BecaPage;
+
+

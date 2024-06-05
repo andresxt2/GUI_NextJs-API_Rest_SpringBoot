@@ -74,14 +74,14 @@ export const MorosidadForm: React.FC<MorosidadFormProps> = ({ }) => {
       id_estudiante: "",
       monto_debido: 0,
       dias_retraso: 0,
-      semestre: "",
+      semestre: "2024-A",
     },
   });
 
   useEffect(() => {
     const fetchEstudiantes = async () => {
       try {
-        const response = await axios.get("http://localhost:5022/api/estudiantes");
+        const response = await axios.get("https://localhost:5024/api/estudiantes");
         const estudiantesData = response.data;
 
         setEstudiantes(estudiantesData.map((estudiante: any) => ({
@@ -99,7 +99,7 @@ export const MorosidadForm: React.FC<MorosidadFormProps> = ({ }) => {
   useEffect(() => {
     const fetchMorosidadData = async (morosidadId: string) => {
       try {
-        const morosidadData = await axios.get(`http://localhost:5022/api/morosidades/${morosidadId}`);
+        const morosidadData = await axios.get(`https://localhost:5024/api/Morosidades/${morosidadId}`);
         console.log(morosidadId);
         form.reset(morosidadData.data);
       } catch (error) {
@@ -111,15 +111,15 @@ export const MorosidadForm: React.FC<MorosidadFormProps> = ({ }) => {
       fetchMorosidadData(params.morosidadesId);
       setInitialData(true);
     }
-  }, [params.morosidadId, form]);
+  }, [params.morosidadesId, form]);
 
   const onSubmit = async (data: MorosidadFormValues) => {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.put(`http://localhost:5022/api/morosidades/${params.morosidadesId}`, data);
+        await axios.put(`https://localhost:5024/api/Morosidades/${params.morosidadesId}`, data);
       } else {
-        await axios.post(`http://localhost:5022/api/morosidades`, data);
+        await axios.post(`https://localhost:5024/api/Morosidades`, data);
       }
       router.refresh();
       router.push(`/../morosidades`);
@@ -135,7 +135,7 @@ export const MorosidadForm: React.FC<MorosidadFormProps> = ({ }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5022/api/morosidades/${params.morosidadesId}`);
+      await axios.delete(`https://localhost:5024/api/Morosidades/${params.morosidadesId}`);
       router.refresh();
       router.push(`/morosidades`);
       router.refresh();

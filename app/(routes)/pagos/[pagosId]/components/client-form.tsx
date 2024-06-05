@@ -80,7 +80,7 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
   useEffect(() => {
     const fetchEstudiantes = async () => {
       try {
-        const response = await axios.get("http://localhost:5022/api/estudiantes");
+        const response = await axios.get("https://localhost:5024/api/estudiantes");
         const estudiantesData = response.data;
 
         setEstudiantes(estudiantesData.map((estudiante: any) => ({
@@ -98,7 +98,16 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
   useEffect(() => {
     const fetchPagoData = async (pagoId: string) => {
       try {
-        const pagoData = await axios.get(`http://localhost:5022/api/pagos/${pagoId}`);
+        const pagoData = await axios.get(`https://localhost:5024/api/pagos/${pagoId}`);
+    
+              // Formatear la fecha para que sea compatible con el input de tipo date
+              if (pagoData.data.fecha_pago) {
+                const date = new Date(pagoData.data.fecha_pago);
+                const formattedDate = date.toISOString().split('T')[0];
+                pagoData.data.fecha_pago = formattedDate;
+              }
+
+
         form.reset(pagoData.data);
       } catch (error) {
         console.error("Error fetching pago data:", error);
@@ -106,6 +115,7 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
     };
 
     if (typeof params.pagosId === 'string' && params.pagosId !== '0') {
+      console.log("initial data")
       fetchPagoData(params.pagosId);
       setInitialData(true);
     }
@@ -119,9 +129,9 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
         fecha_pago: new Date(data.fecha_pago).toISOString(),
       };
       if (initialData) {
-        await axios.put(`http://localhost:5022/api/pagos/${params.pagosId}`, formattedData);
+        await axios.put(`https://localhost:5024/api/pagos/${params.pagosId}`, formattedData);
       } else {
-        await axios.post(`http://localhost:5022/api/pagos`, formattedData);
+        await axios.post(`https://localhost:5024/api/pagos`, formattedData);
       }
       router.refresh();
       router.push(`/../pagos`);
@@ -137,7 +147,7 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`http://localhost:5022/api/pagos/${params.pagosId}`);
+      await axios.delete(`https://localhost:5024/api/pagos/${params.pagosId}`);
       router.refresh();
       router.push(`/pagos`);
       router.refresh();

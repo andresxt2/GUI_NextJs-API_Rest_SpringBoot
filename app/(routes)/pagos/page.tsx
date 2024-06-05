@@ -11,7 +11,7 @@ const PagoPage = () => {
   useEffect(() => {
     const obtenerPagos = async () => {
       try {
-        const PagosData = await axios.get('http://localhost:5022/api/pagos');// Obtiene los clientes de la API
+        const PagosData = await axios.get('https://localhost:5024/api/pagos');// Obtiene los clientes de la API
         const sortedPagos = PagosData.data.sort((a: PagosColumn, b: PagosColumn) => b.id_pago - a.id_pago); // Ordena los pagos por id_pago de manera descendente
         setPagos(sortedPagos); // Actualiza el estado con los clientes obtenidos
       } catch (error) {

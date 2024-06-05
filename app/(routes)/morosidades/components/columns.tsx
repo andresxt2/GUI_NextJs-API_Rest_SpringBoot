@@ -7,6 +7,10 @@ export type MorosidadColumn = {
     semestre: string;
     monto_debido: number;
     dias_retraso: number;
+    Estudiantes: {
+        nombres: string;
+        apellidos: string;
+    };
 }
 
 export const columns: ColumnDef<MorosidadColumn>[] = [
@@ -19,8 +23,9 @@ export const columns: ColumnDef<MorosidadColumn>[] = [
         header: "Cliente",
     },
     {
-        accessorKey: "semestre",
-        header: "semestre",
+        accessorFn: (row) => `${row.Estudiantes.nombres} ${row.Estudiantes.apellidos}`,
+        accessorKey: "nombres_apellidos",
+        header: "Estudiantes",
     },
     {
         accessorKey: "monto_debido",
@@ -32,6 +37,10 @@ export const columns: ColumnDef<MorosidadColumn>[] = [
     {
         accessorKey: "dias_retraso",
         header: "Dias de retraso",
+    },
+    {
+        accessorKey: "semestre",
+        header: "Semestre",
     },
     {
         id: "acciones",

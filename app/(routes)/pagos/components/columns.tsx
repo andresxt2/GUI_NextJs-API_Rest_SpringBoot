@@ -9,6 +9,10 @@ export type PagosColumn = {
     saldo: number;
     semestre: string;
     estado: string;
+    Estudiantes: {
+        nombres: string;
+        apellidos: string;
+    };
 }
 
 export const columns: ColumnDef<PagosColumn>[] = [
@@ -18,7 +22,12 @@ export const columns: ColumnDef<PagosColumn>[] = [
     },
     {
         accessorKey: "id_estudiante",
-        header: "Estudiante",
+        header: "Cédula del Estudiante",
+    },
+    {
+        accessorFn: (row) => `${row.Estudiantes.nombres} ${row.Estudiantes.apellidos}`,
+        accessorKey: "nombres_apellidos",
+        header: "Estudiantes",
     },
     {
         accessorKey: "cod_pago",

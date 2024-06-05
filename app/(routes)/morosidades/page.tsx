@@ -11,7 +11,7 @@ const MorosidadPage = () => {
   useEffect(() => {
     const obtenerMorosidades = async () => {
       try {
-        const morosidadesData = await axios.get('http://localhost:5022/api/Morosidades');// Obtiene los pagos de la API
+        const morosidadesData = await axios.get('https://localhost:5024/api/Morosidades');// Obtiene los pagos de la API
         const sortedMorosidades = morosidadesData.data.sort((a: MorosidadColumn, b: MorosidadColumn) => b.id_morosidad - a.id_morosidad); // Ordena los pagos por id_morosidad de manera descendente
         setMorosidades(sortedMorosidades); // Actualiza el estado con los pagos obtenidos
       } catch (error) {

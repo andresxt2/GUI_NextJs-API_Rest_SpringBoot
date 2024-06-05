@@ -1,7 +1,5 @@
 import { Product } from '@/types'
 import axios from 'axios'
-import qs from 'query-string'
-
 
 export const getProducts = async (): Promise<Product[]> => {
 
