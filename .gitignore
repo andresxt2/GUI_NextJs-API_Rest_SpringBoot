@@ -9,6 +9,8 @@
 # testing
 /coverage
 
+/iisnode
+
 # next.js
 /.next/
 /out/

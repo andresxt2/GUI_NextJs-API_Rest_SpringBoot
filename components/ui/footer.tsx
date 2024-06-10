@@ -1,14 +1,18 @@
+import Image from "next/image";
+
 export default function Footer() {
     return (
       <footer className="bg-black text-white pt-4 pb-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-1/3 mb-3">
-              <img 
-                src="https://andrestayupanta.neocities.org/imagesMvc/images.jpg" 
-                alt="Bullworth College Logo" 
-                className="mb-2"
-              />
+            <Image
+              src="https://andrestayupanta.neocities.org/imagesMvc/images.jpg"
+              alt="Bullworth College Logo"
+              width={200}
+              height={100}
+              className="mb-2"
+            />
               <p>Comprometidos con la formación de líderes y profesionales que marcarán la diferencia en el mundo.</p>
             </div>
             <div className="w-full lg:w-1/3 mb-3">

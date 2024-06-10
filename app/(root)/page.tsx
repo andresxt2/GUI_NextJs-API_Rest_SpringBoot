@@ -29,7 +29,13 @@ export default function Home() {
             <p className="text-lg">{article.content}</p>
           </article>
           <article className="w-full lg:w-1/2 p-4">
-            <img src={article.img_src} className="w-full h-auto rounded-lg shadow-md" alt="" />
+            <Image
+              src={article.img_src}
+              alt={article.title}
+              width={600}
+              height={400}
+              className="w-full h-auto rounded-lg shadow-md"
+            />
           </article>
         </div>
       ))}
