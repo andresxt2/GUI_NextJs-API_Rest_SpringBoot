@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 
 export type SearchResult = {
-  nombre_tabla: string;
+  Tabla: string;
   ID: string;
   Nombre: string;
   Detalle: string;
@@ -10,7 +10,7 @@ export type SearchResult = {
 
 export const columns: ColumnDef<SearchResult>[] = [
   {
-    accessorKey: "nombre_tabla",
+    accessorKey: "Tabla",
     header: "Tabla",
   },
   {
@@ -20,10 +20,6 @@ export const columns: ColumnDef<SearchResult>[] = [
   {
     accessorKey: "Nombre",
     header: "Nombre",
-  },
-  {
-    accessorKey: "Detalle",
-    header: "Detalle",
   },
   {
     id: "acciones",
