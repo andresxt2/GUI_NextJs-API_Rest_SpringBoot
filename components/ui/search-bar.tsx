@@ -1,68 +1,35 @@
+'use client';
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 
 const SearchBar = () => {
+  const [query, setQuery] = useState<string>('');
   const router = useRouter();
-  const [query, setQuery] = useState('');
-  const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  const options = ['estudiantes', 'becas', 'pagos', 'morosidades'];
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.toLowerCase();
-    setQuery(value);
-    setSuggestions(value ? options.filter(option => option.includes(value)) : []);
-  };
-
-  const handleSearch = (option?: string) => {
-    const searchQuery = option || query;
-    switch (searchQuery) {
-      case 'estudiantes':
-        router.push('/estudiantes');
-        break;
-      case 'becas':
-        router.push('/becas');
-        break;
-      case 'pagos':
-        router.push('/pagos');
-        break;
-      case 'morosidades':
-        router.push('/morosidades');
-        break;
-      default:
-        alert('No hay resultados para esa búsqueda.');
-    }
-    setQuery('');
-    setSuggestions([]);
+    // Redirigir a /buscar con la consulta
+    router.push(`/buscar?query=${query}`);
   };
 
   return (
-    <div className="relative flex items-center space-x-2">
-      <Input 
-        placeholder="Buscar..." 
+    <form onSubmit={handleSearch} className="flex items-center">
+      <input
+        type="text"
         value={query}
-        onChange={handleInputChange}
-        className="max-w-xs"
+        onChange={(e) => setQuery(e.target.value.trimStart())}
+        placeholder="Buscar por ID o Nombre"
+        className="px-4 py-2 border border-gray-300 rounded-md"
       />
-      <Button onClick={() => handleSearch()} className="bg-black text-white">
+      <button
+        type="submit"
+        className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+      >
         Buscar
-      </Button>
-      {suggestions.length > 0 && (
-        <ul className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg">
-          {suggestions.map((suggestion, index) => (
-            <li 
-              key={index}
-              className="p-2 cursor-pointer hover:bg-gray-200"
-              onClick={() => handleSearch(suggestion)}
-            >
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+      </button>
+    </form>
   );
 };
 
