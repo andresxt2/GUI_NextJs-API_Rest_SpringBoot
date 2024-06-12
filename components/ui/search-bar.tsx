@@ -20,7 +20,7 @@ const SearchBar = () => {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value.trimStart())}
-        placeholder="Buscar por ID o Nombre"
+        placeholder="Buscar"
         className="px-4 py-2 border border-gray-300 rounded-md"
       />
       <button

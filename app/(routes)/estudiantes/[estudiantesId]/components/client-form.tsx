@@ -42,6 +42,8 @@ type EstudiantesFormValues = z.infer<typeof formSchema>;
 interface EstudiantesFormProps {
 }
 
+const localStorageKey = "estudiantesForm";
+
 export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
   const params = useParams();
   const router = useRouter();
@@ -66,6 +68,22 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
       estado_matricula: "",
     },
   });
+
+  // Load form data from localStorage on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem(localStorageKey);
+    if (savedData) {
+      form.reset(JSON.parse(savedData));
+    }
+  }, []);
+
+  // Save form data to localStorage on change
+  useEffect(() => {
+    const subscription = form.watch((values) => {
+      localStorage.setItem(localStorageKey, JSON.stringify(values));
+    });
+    return () => subscription.unsubscribe();
+  }, [form]);
 
   useEffect(() => {
     const fetchEstudianteData = async (id_estudiante: string) => {
@@ -96,6 +114,7 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
       router.refresh();
       router.push(`/../estudiantes`);
       router.refresh();
+      localStorage.removeItem(localStorageKey); // Remove form data from localStorage on submit
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error("Algo estuvo mal.");

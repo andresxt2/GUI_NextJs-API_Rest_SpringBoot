@@ -31,15 +31,10 @@ import {
 const formSchema = z.object({
   id_estudiante: z.string().min(1, { message: "Selecciona una cédula." }),
   cod_pago: z.string().optional(),
-  saldo: z
-    .coerce
-    .number()
-    .min(0, { message: "Debe ingresar un valor válido." })
-    .int({ message: "Debe ingresar un número entero." })
-    .optional(),
-  fecha_pago: z.string(),
-  estado: z.string().optional(),
-  semestre: z.string().optional()
+  saldo: z.coerce.number().min(0, { message: "Debe ingresar un valor válido." }).optional(),
+  fecha_pago: z.string().min(1, { message: "Selecciona una fecha." }),
+  estado: z.string().min(1, { message: "Selecciona un estado." }),
+  semestre: z.string().min(1, { message: "Selecciona un semestre." }),
 });
 
 type Estudiante = {
@@ -50,6 +45,8 @@ type Estudiante = {
 type PagosFormValues = z.infer<typeof formSchema>;
 
 interface PagosFormProps {}
+
+const localStorageKey = "pagosForm";
 
 export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
   const params = useParams();
@@ -67,15 +64,31 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
 
   const form = useForm<PagosFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ? undefined : {
+    defaultValues: {
       id_estudiante: "",
       saldo: 0,
       cod_pago: "",
       fecha_pago: "",
       estado: "pendiente",
-      semestre: "Semestre 2024-A"
+      semestre: "Semestre 2024-A",
     },
   });
+
+  // Load form data from localStorage on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem(localStorageKey);
+    if (savedData) {
+      form.reset(JSON.parse(savedData));
+    }
+  }, [form]);
+
+  // Save form data to localStorage on change
+  useEffect(() => {
+    const subscription = form.watch((values) => {
+      localStorage.setItem(localStorageKey, JSON.stringify(values));
+    });
+    return () => subscription.unsubscribe();
+  }, [form]);
 
   useEffect(() => {
     const fetchEstudiantes = async () => {
@@ -99,15 +112,11 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
     const fetchPagoData = async (pagoId: string) => {
       try {
         const pagoData = await axios.get(`https://localhost:5024/api/pagos/${pagoId}`);
-    
-              // Formatear la fecha para que sea compatible con el input de tipo date
-              if (pagoData.data.fecha_pago) {
-                const date = new Date(pagoData.data.fecha_pago);
-                const formattedDate = date.toISOString().split('T')[0];
-                pagoData.data.fecha_pago = formattedDate;
-              }
-
-
+        if (pagoData.data.fecha_pago) {
+          const date = new Date(pagoData.data.fecha_pago);
+          const formattedDate = date.toISOString().split('T')[0];
+          pagoData.data.fecha_pago = formattedDate;
+        }
         form.reset(pagoData.data);
       } catch (error) {
         console.error("Error fetching pago data:", error);
@@ -115,7 +124,6 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
     };
 
     if (typeof params.pagosId === 'string' && params.pagosId !== '0') {
-      console.log("initial data")
       fetchPagoData(params.pagosId);
       setInitialData(true);
     }
@@ -136,6 +144,7 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
       router.refresh();
       router.push(`/../pagos`);
       router.refresh();
+      localStorage.removeItem(localStorageKey); // Remove form data from localStorage on submit
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error("Algo estuvo mal.");
