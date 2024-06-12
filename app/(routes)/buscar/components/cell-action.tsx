@@ -21,22 +21,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
 
   const handleRedirect = () => {
-    router.push(`/${getTableName(data.Tabla)}/${data.ID}`);
-  };
-
-  const getTableName = (tableName: string) => {
-    switch (tableName) {
-      case 'Estudiantes':
-        return 'estudiantes';
-      case 'Pagos':
-        return 'pagos';
-      case 'Morosidad':
-        return 'morosidades';
-      case 'Becas_Ayudas_Financieras':
-        return 'becas';
-      default:
-        return tableName.toLowerCase();
-    }
+    router.push(`/${data.nombre_tabla}/${data.ID}`);
   };
 
   return (

@@ -44,7 +44,7 @@ export function DataTable<TData, TValue>({
     id_beca: "ID Beca",
     id_morosidad: "ID Morosidad",
     nombres_apellidos: "Nombres",
-    Tabla: "Tabla",
+    nombre_tabla: "Tabla",
   };
 
   const table = useReactTable({
