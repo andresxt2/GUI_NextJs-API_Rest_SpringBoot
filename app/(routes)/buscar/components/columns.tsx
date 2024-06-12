@@ -4,7 +4,7 @@ import { CellAction } from "./cell-action";
 export type SearchResult = {
   Tabla: string;
   ID: string;
-  Nombre: string;
+  EstudianteNombre: string;
   Detalle: string;
 };
 
@@ -18,8 +18,8 @@ export const columns: ColumnDef<SearchResult>[] = [
     header: "ID",
   },
   {
-    accessorKey: "Nombre",
-    header: "Nombre",
+    accessorKey: "EstudianteNombre",
+    header: "EstudianteNombre",
   },
   {
     id: "acciones",
