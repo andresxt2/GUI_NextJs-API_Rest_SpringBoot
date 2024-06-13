@@ -9,8 +9,8 @@ export default function Footer() {
             <Image
               src="https://andrestayupanta.neocities.org/imagesMvc/images.jpg"
               alt="Bullworth College Logo"
-              width={200}
-              height={100}
+              width={100}
+              height={50}
               className="mb-2"
             />
               <p>Comprometidos con la formación de líderes y profesionales que marcarán la diferencia en el mundo.</p>

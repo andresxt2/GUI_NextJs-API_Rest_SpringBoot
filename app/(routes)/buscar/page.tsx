@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from 'next/navigation';
 import { DataTable } from "@/components/ui/data-table";
 import { SearchResult, columns } from "./components/columns";
@@ -36,4 +36,10 @@ const BuscarPage = () => {
   );
 };
 
-export default BuscarPage;
+const SuspendedBuscarPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <BuscarPage />
+  </Suspense>
+);
+
+export default SuspendedBuscarPage;

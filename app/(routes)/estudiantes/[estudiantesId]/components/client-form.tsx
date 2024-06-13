@@ -1,3 +1,5 @@
+'use client'
+
 import * as z from "zod";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -75,7 +77,7 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
     if (savedData) {
       form.reset(JSON.parse(savedData));
     }
-  }, []);
+  }, [form]);
 
   // Save form data to localStorage on change
   useEffect(() => {
@@ -122,7 +124,6 @@ export const EstudiantesForm: React.FC<EstudiantesFormProps> = ({ }) => {
       setLoading(false);
     }
   };
-  
 
   const onDelete = async () => {
     try {

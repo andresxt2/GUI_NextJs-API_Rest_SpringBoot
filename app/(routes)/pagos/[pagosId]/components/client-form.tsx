@@ -1,3 +1,5 @@
+'use client';
+
 import * as z from "zod";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -136,14 +138,13 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
         ...data,
         fecha_pago: new Date(data.fecha_pago).toISOString(),
       };
+      console.log(formattedData);
       if (initialData) {
         await axios.put(`https://localhost:5024/api/pagos/${params.pagosId}`, formattedData);
       } else {
         await axios.post(`https://localhost:5024/api/pagos`, formattedData);
       }
-      router.refresh();
-      router.push(`/../pagos`);
-      router.refresh();
+      router.push(`/pagos`);
       localStorage.removeItem(localStorageKey); // Remove form data from localStorage on submit
       toast.success(toastMessage);
     } catch (error: any) {
@@ -157,9 +158,7 @@ export const PagosForm: React.FC<PagosFormProps> = ({ }) => {
     try {
       setLoading(true);
       await axios.delete(`https://localhost:5024/api/pagos/${params.pagosId}`);
-      router.refresh();
       router.push(`/pagos`);
-      router.refresh();
       toast.success("Pago borrado");
     } catch (error: any) {
       toast.error("Algo salió mal.");
